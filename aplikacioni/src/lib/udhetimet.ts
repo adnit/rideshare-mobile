@@ -1,28 +1,29 @@
+import "server-only";
+import { getSql } from "./db";
+
 export type Udhetim = {
   id: string;
   nisja: string;
   destinacioni: string;
   ora: string;
-  shoferi: string;
   vendtakimi: string;
   vende: number;
 };
 
-export const udhetimet: Udhetim[] = [
-  {
-    id: "1", nisja: "Prishtinë", destinacioni: "AAB", ora: "07:30",
-    shoferi: "Dreni", vendtakimi: "Sheshi Skënderbeu", vende: 2
-  },
-  {
-    id: "2", nisja: "Fushë Kosovë", destinacioni: "AAB", ora: "08:00",
-    shoferi: "Blerta", vendtakimi: "Te stacioni i trenit", vende: 1
-  },
-  {
-    id: "3", nisja: "Lipjan", destinacioni: "AAB", ora: "08:15",
-    shoferi: "Gent", vendtakimi: "Qendra e qytetit", vende: 0
-  },
-];
+export async function lexoUdhetimet(): Promise<Udhetim[]> {
+  const sql = getSql();
+  const rows = await sql`
+    SELECT id, nisja, destinacioni, ora, vendtakimi, vende
+    FROM udhetimet ORDER BY id
+  `;
+  return rows as Udhetim[];
+}
 
-export function gjejUdhetimin(id: string) {
-  return udhetimet.find((udhetim) => udhetim.id === id);
+export async function gjejUdhetimin(id: string): Promise<Udhetim | undefined> {
+  const sql = getSql();
+  const rows = await sql`
+    SELECT id, nisja, destinacioni, ora, vendtakimi, vende
+    FROM udhetimet WHERE id = ${id}
+  `;
+  return rows[0] as Udhetim | undefined;
 }
