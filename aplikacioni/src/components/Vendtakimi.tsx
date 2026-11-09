@@ -47,7 +47,8 @@ export function Vendtakimi() {
 
   // Leja kërkohet vetëm këtu, pas klikimit; asgjë nuk lexohet gjatë renderimit.
   function perdorVendndodhjen() {
-    if (!("geolocation" in navigator)) {
+    // Disa pajisje e kanë vetinë, por pa vlerë; kontrollojmë vetë objektin.
+    if (!navigator.geolocation) {
       setGjendja("unavailable");
       setMesazhi("Ky shfletues nuk e mbështet vendndodhjen. Shkruaj vendtakimin vetë.");
       return;
