@@ -31,7 +31,13 @@ export default async function Kerkesa({
           <p>Kërkesa për {udhetim.nisja} nuk është dërguar te shoferi.</p>
           <p>Ruajtjen dhe konfirmimin real do t’i shtojmë më vonë.</p>
         </>
-      ) : <h1>Nuk ka vende të lira.</h1>}
+      ) : (
+        <>
+          <h1>Nuk ka vende të lira.</h1>
+          <p>Kërkesa nuk u dërgua. Zgjidh një udhëtim tjetër nga lista.</p>
+          <Link className="action" href="/">Kthehu te lista</Link>
+        </>
+      )}
     </main>
   );
 }
