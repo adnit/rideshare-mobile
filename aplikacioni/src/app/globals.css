@@ -10,3 +10,8 @@ main { max-width: 720px; margin: auto; padding: 24px; }
   margin-top: 12px; padding: 8px 14px; border: 0; border-radius: 8px;
   background: #3548d4; color: white; font: inherit; text-decoration: none; }
 .action:disabled { background: #39455b; color: #e4eaf4; cursor: default; }
+.meeting { margin-top: 24px; padding-top: 16px; border-top: 1px solid #8090aa; }
+.meeting input { display: block; width: 100%; min-height: 44px; margin-top: 6px;
+  padding: 8px 12px; border: 1px solid #8090aa; border-radius: 8px;
+  background: transparent; color: inherit; font: inherit; }
+.meeting [role="alert"]:empty, .meeting [role="status"]:empty { display: none; }
